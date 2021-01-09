@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.studentAssStatus.StuAssExeStatusMapper">
+
+    <select id="getExeCommitCount" resultType="int">
+        select IFNULL(MAX(commit_count),-1) from stu_ass_exe where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </select>
+    <update id="updateStuAssExeStatus" parameterType="StuAssExeStatus">
+        update stu_ass_exe SET exe_score=#{exe_score},commit_count=#{commit_count},commit_status=#{commit_status},copy_rate=#{copy_rate},copy_origin=#{copy_origin},copy_content=#{copy_content}
+        where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </update>
+    <insert id="setStuAssExeStatus">
+        insert into stu_ass_exe (stu_id, ass_id, exe_id, exe_score, commit_count, commit_status, copy_rate,copy_origin,copy_content) values (#{stu_id}, #{ass_id}, #{exe_id}, #{exe_score}, #{commit_count}, #{commit_status}, #{copy_rate},#{copy_origin},#{copy_content})
+    </insert>
+
+</mapper>

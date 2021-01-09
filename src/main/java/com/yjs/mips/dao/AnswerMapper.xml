@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.AnswerMapper">
+
+    <insert id="createAnswer" parameterType="MipsAnswer" useGeneratedKeys="true" keyProperty="id">
+        insert into answer_history (student_id, question_id, datetime, correct, info)
+        values (#{studentId}, #{questionId}, #{datetime}, #{correct}, #{info})
+    </insert>
+
+    <insert id="createReg" parameterType="MipsRegister">
+        insert into mips_answer_reg (answer_id, name, `value`)
+        values (#{id}, #{name}, #{value})
+    </insert>
+
+    <insert id="createMem" parameterType="MipsMemory">
+        insert into mips_answer_mem (answer_id, address, `value`)
+        values (#{id}, #{address}, #{value})
+    </insert>
+    
+    <select id="findRegs" parameterType="Long" resultType="MipsRegister">
+        select
+          answer_id as id,
+          name,
+          `value`
+        from
+          mips_answer_reg
+        where answer_id = #{id}
+    </select>
+
+    <select id="findMems" parameterType="Long" resultType="MipsMemory">
+        select
+          answer_id as id,
+          address,
+          `value`
+        from
+          mips_answer_mem
+        where answer_id = #{id}
+    </select>
+</mapper>

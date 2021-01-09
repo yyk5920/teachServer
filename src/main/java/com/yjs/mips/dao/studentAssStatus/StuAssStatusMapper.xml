@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.studentAssStatus.StuAssStatusMapper">
+
+    <select id="getCommitCount" resultType="int">
+        select commit_count from stu_ass_exe where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </select>
+    <update id="setStuAssStatus" parameterType="StuAssStatus">
+        update stu_ass_exe SET exe_score=#{exe_score},commit_count=#{commit_count},commit_status=#{commit_status},commit_time=#{commit_time}
+        where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </update>
+
+</mapper>

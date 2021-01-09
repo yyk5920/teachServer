@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.verilog.VerilogMapper">
+
+    <select id="getVerilogExeList" resultType="Map">
+        select
+        exe_id,exe_title, exe_type,exe_cited_times,exe_created_member,exe_created_timestamp,exe_hard_easy,exe_knowlesge_points,exe_chapter
+        from
+        exe_verilog
+    </select>
+
+    <select id="getVerilogExeListByStr" resultType="Map" parameterType="Map">
+        select
+        *
+        from
+        exe_verilog where 0=0
+        <if test="exe_type!=null">
+            and exe_type = #{exe_type}
+        </if>
+        <if test="exe_created_member!=null">
+            and exe_created_member = #{exe_created_member}
+        </if>
+        <if test="exe_hard_easy!=null">
+            and exe_hard_easy = #{exe_hard_easy}
+        </if>
+        <if test="exe_knowlesge_points!=null">
+            and exe_knowlesge_points = #{exe_knowlesge_points}
+        </if>
+        <if test="exe_chapter!=null">
+            and exe_chapter = #{exe_chapter}
+        </if>
+    </select>
+
+
+    <insert id="addVerilogExe" parameterType="ExeVerilogInfo">
+        insert into exe_verilog (exe_id, exe_title, exe_type,exe_cited_times,exe_created_member,exe_created_timestamp,exe_hard_easy,exe_knowlesge_points,exe_chapter,exe_info,exe_input,exe_output,exe_code_head,exe_is_single,exe_cited_modules,exe_module_name,exe_tb_path,exe_result_path,exe_tb_code,exe_result_code,exe_has_coe,exe_coe_path) values (#{exe_id}, #{exe_title}, #{exe_type},#{exe_cited_times},#{exe_created_member},#{exe_created_timestamp},#{exe_hard_easy},#{exe_knowlesge_points},#{exe_chapter},#{exe_info},#{exe_input},#{exe_output},#{exe_code_head},#{exe_is_single},#{exe_cited_modules},#{exe_module_name},#{exe_tb_path},#{exe_result_path},#{exe_tb_code},#{exe_result_code},#{exe_has_coe},#{exe_coe_path})
+    </insert>
+
+    <select id="getVerilogExeContent" resultType="Map" parameterType="String">
+    select
+    exe_id, exe_info,exe_input,exe_output,exe_code_head,exe_is_single,exe_cited_modules,exe_module_name,exe_tb_path,exe_result_path,exe_tb_code,exe_result_code,exe_has_coe,exe_coe_path
+    from
+    exe_verilog
+    where exe_id = #{exe_id}
+    </select>
+    <update id="modifyVerilogExe" parameterType="ExeVerilogInfo">
+        update exe_verilog
+        SET
+        exe_title=#{exe_title}, exe_type=#{exe_type},exe_cited_times=#{exe_cited_times},exe_created_member=#{exe_created_member},exe_created_timestamp=#{exe_created_timestamp},exe_hard_easy=#{exe_hard_easy},exe_knowlesge_points=#{exe_knowlesge_points},exe_chapter=#{exe_chapter},exe_info=#{exe_info},exe_input=#{exe_input},exe_output=#{exe_output},exe_code_head=#{exe_code_head},exe_is_single=#{exe_is_single},exe_cited_modules=#{exe_cited_modules},exe_module_name=#{exe_module_name},exe_tb_path=#{exe_tb_path},exe_result_path=#{exe_result_path},exe_tb_code=#{exe_tb_code},exe_result_code=#{exe_result_code},exe_has_coe=#{exe_has_coe},exe_coe_path=#{exe_coe_path}
+        where exe_id = #{exe_id}
+    </update>
+
+    <delete id="deleteVerilogExeContent" parameterType="String">
+        delete from exe_verilog where exe_id = #{exe_id}
+    </delete>
+<!--    DELETE FROM LD_USER WHERE ID in-->
+<!--    　　<foreach item="item" index="index" collection="list" open="(" separator="," close=")">-->
+<!--    　　　　#{item}-->
+<!--    　　</foreach>-->
+</mapper>

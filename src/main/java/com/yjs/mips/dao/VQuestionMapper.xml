@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.VQuestionMapper">
+
+    <insert id="createQuestion" parameterType="VQuestion">
+        insert into verilog_question (id, info)
+        values (#{id}, #{info})
+    </insert>
+
+
+    <select id="findQuestion" resultType="VQuestion" parameterType="Long">
+        select
+          id as id,
+          info
+        from
+          verilog_question
+        where
+          id = #{id}
+    </select>
+
+</mapper>

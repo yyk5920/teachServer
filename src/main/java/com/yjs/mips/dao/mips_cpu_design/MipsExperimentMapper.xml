@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.mips_cpu_design.MipsExperimentMapper">
+
+<select id="getExperimentList" resultType="Map">
+    select
+    title, module_id
+    from
+    mip_design
+</select>
+<select id="getExperiment" parameterType="Long" resultType="MipsExperiment">
+    select * from mip_design where module_id = #{module_id}
+</select>
+    <select id="getExeScore"  resultType="int">
+    select IFNULL(MAX(exe_score),-1) from stu_ass_exe where stu_id = #{stu_id}  AND ass_id = #{ass_id} AND exe_id = #{module_id};
+</select>
+
+<select id="getRelativeModuleNames" parameterType="Long" resultType="String">
+    select bat from mip_design where module_id = #{module_id}
+</select>
+<select id="getStuAssScoreById" parameterType="String" resultType="map">
+    select * from stu_ass_exe where stu_id = #{stu_id}
+</select>
+
+
+<insert id="setStuAssScore" parameterType="StuAssScore">
+    insert into stu_ass_score (stu_id, ass_id, score1,count1,score2,count2,score3,count3,score4,count4,score5,count5,score6,count6,score7,count7,score8,count8,score9,count9,score10,count10,score11,count11,score12,count12,score13,count13,score14,count14,score15,count15,score16,count16,score17,count17,score18,count18,score19,count19,score20,count20,score21,count21,score_total,count_total) values (#{stu_id}, #{ass_id}, #{score1},#{count1},#{score2},#{count2},#{score3},#{count3},#{score4},#{count4},#{score5},#{count5},#{score6},#{count6},#{score7},#{count7},#{score8},#{count8},#{score9},#{count9},#{score10},#{count10},#{score11},#{count11},#{score12},#{count12},#{score13},#{count13},#{score14},#{count14},#{score15},#{count15},#{score16},#{count16},#{score17},#{count17},#{score18},#{count18},#{score19},#{count19},#{score20},#{count20},#{score21},#{count21},#{score_total},#{count_total})
+</insert>
+
+</mapper>

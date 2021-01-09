@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.account.StudentMapper">
+
+    <select id="getStudent" resultType="Student">
+    select
+    *
+    from
+    info_student where stu_id = #{stu_id}
+</select>
+    <update id="setStudentToken" parameterType="Student">
+        update info_student SET token=#{token}
+        where stu_id = #{stu_id}
+    </update>
+    <select id="getStudentAll" resultType="java.lang.String">
+    select
+    stu_id
+    from
+    info_student
+</select>
+
+
+<!--    <select id="getExperiment" parameterType="Long" resultType="MipsExperiment">-->
+<!--    select * from mip_design where id = #{id}-->
+<!--</select>-->
+
+</mapper>

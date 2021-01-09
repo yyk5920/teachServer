@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.QuestionMapper">
+
+    <insert id="createInitMemory" parameterType="MipsMemory">
+        insert into mips_question_mem_init (question_id, address, `value`)
+        values (#{id}, #{address}, #{value})
+    </insert>
+
+    <insert id="createResMemory" parameterType="MipsMemory">
+        insert into mips_question_mem_result (question_id, address, `value`)
+        values (#{id}, #{address}, #{value})
+    </insert>
+
+    <insert id="createInitRegister" parameterType="MipsRegister">
+        insert into mips_question_reg_init (question_id, name, `value`)
+        values (#{id}, #{name}, #{value})
+    </insert>
+
+    <insert id="createResRegister" parameterType="MipsRegister">
+        insert into mips_question_reg_result (question_id, name, `value`)
+        values (#{id}, #{name}, #{value})
+    </insert>
+
+    <insert id="createStack" parameterType="MipsStack">
+        insert into mips_question_stack (question_id, `size`, content)
+        values (#{questionId}, #{size}, #{content})
+    </insert>
+
+    <select id="findInitMemories" resultType="MipsMemory" parameterType="Long">
+        select
+          question_id as id,
+          address,
+          `value`
+        from
+          mips_question_mem_init
+        where
+          question_id = #{id}
+    </select>
+
+    <select id="findInitRegisters" resultType="MipsRegister" parameterType="Long">
+        select
+          question_id as id,
+          `name`,
+          `value`
+        from
+          mips_question_reg_init
+        where
+          question_id = #{id}
+    </select>
+
+    <select id="findResMemories" resultType="MipsMemory" parameterType="Long">
+        select
+          question_id as id,
+          address,
+          `value`
+        from
+          mips_question_mem_result
+        where
+          question_id = #{id}
+    </select>
+
+    <select id="findResRegisters" resultType="MipsRegister" parameterType="Long">
+        select
+          question_id as id,
+          `name`,
+          `value`
+        from
+          mips_question_reg_result
+        where
+          question_id = #{id}
+    </select>
+
+    <select id="findStack" resultType="MipsStack" parameterType="Long">
+        select
+          question_id as questionId,
+          size,
+          content
+        from
+          mips_question_stack
+        where
+          question_id = #{id}
+    </select>
+</mapper>

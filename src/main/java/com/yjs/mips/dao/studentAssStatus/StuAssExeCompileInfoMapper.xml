@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjs.mips.dao.studentAssStatus.StuAssExeCompileInfoMapper">
+
+    <select id="getStuAssExeCommitCount" resultType="int">
+        select commit_count from stu_ass_exe_compile_info where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </select>
+    <update id="setStuAssExeCommitCount" parameterType="StuAssExeCompileInfo">
+        update stu_ass_exe_compile_info SET commit_count=#{commit_count}
+        where stu_id = #{stu_id} and ass_id = #{ass_id} and exe_id = #{exe_id}
+    </update>
+    <insert id="setStuAssExeCompileInfo" parameterType="StuAssExeCompileInfo" >
+        insert into stu_ass_exe_compile_info (stu_id, ass_id, exe_id, compile_count, compile_info)
+        values (#{stu_id},#{ass_id},#{exe_id}, #{compile_count}, #{compile_info})
+    </insert>
+</mapper>
